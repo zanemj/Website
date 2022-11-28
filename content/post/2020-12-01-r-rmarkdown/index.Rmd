@@ -8,6 +8,9 @@ tags: ["R Markdown", "plot", "regression"]
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(collapse = TRUE)
+library(plyr)
+library(dplyr)
+library(tidyr)
 ```
 
 # Data Cleaning
@@ -16,10 +19,6 @@ This page contains a few small data visualizations that I created for CO2 emissi
 Before I could create the visualizations I had to clean up the data a bit and organize it the way I wanted.
 
 ```{r data exploration, echo = TRUE, warnings = FALSE}
-
-library(plyr)
-library(dplyr)
-library(tidyr)
 
 d <- read.csv("/Users/zane/R/SafeWebsite/Copy of GGE (MTCO2)_Full Data_data - Data to be exported for R (2) copy.csv")
 
@@ -64,7 +63,6 @@ d2022 <- dfscope2 %>% filter(Fiscal.Year == 2022)
 scope2 <- ddply(d2022, .(Bname, Fiscal.Year, abrev), 
                summarize, MTCO2 = sum(MTCO2), bldg.sqft = max(bldg.sqft))
 
-scope2
 ```
 
 # Visualizations
